@@ -1,15 +1,72 @@
 import { createClient } from '@supabase/supabase-js'
 import { Lead } from './types'
 
-const supabaseUrl = process.env.SUPABASE_URL!
-const supabaseKey = process.env.SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
 export async function createLeadsTable() {
-  const { error } = await supabase.rpc('create_leads_table', {})
-  if (error) {
-    console.error('Error creating leads table:', error)
+  try {
+    // First check if table exists
+    const { error: checkError } = await supabase
+      .from('leads')
+      .select('id')
+      .limit(1)
+    
+    if (checkError && checkError.code === '42P01') {
+      // Table doesn't exist, create it
+      console.log('Creating leads table...')
+      
+      // Create the table using SQL
+      const createTableSQL = `
+        CREATE TABLE IF NOT EXISTS public.leads (
+          id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+          github_username TEXT NOT NULL,
+          repo_name TEXT NOT NULL,
+          repo_url TEXT NOT NULL,
+          owner_name TEXT,
+          owner_email TEXT,
+          owner_bio TEXT,
+          owner_location TEXT,
+          owner_company TEXT,
+          owner_blog TEXT,
+          owner_twitter_username TEXT,
+          repo_description TEXT,
+          repo_stars INTEGER DEFAULT 0,
+          repo_forks INTEGER DEFAULT 0,
+          repo_language TEXT,
+          repo_created_at TIMESTAMP WITH TIME ZONE,
+          repo_updated_at TIMESTAMP WITH TIME ZONE,
+          repo_last_commit_at TIMESTAMP WITH TIME ZONE,
+          status TEXT DEFAULT 'new',
+          email_sent BOOLEAN DEFAULT FALSE,
+          email_sent_at TIMESTAMP WITH TIME ZONE,
+          email_pending_approval BOOLEAN DEFAULT FALSE,
+          email_approved BOOLEAN DEFAULT FALSE,
+          ai_score DECIMAL(3,2),
+          ai_recommendation TEXT CHECK (ai_recommendation IN ('approve', 'reject', 'review')),
+          ai_analysis TEXT,
+          created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+          updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+        );
+        
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_leads_github_repo 
+        ON public.leads(github_username, repo_name);
+      `
+      
+      // Note: This would require the service role key to execute
+      // For now, we'll provide instructions
+      console.log('Table creation requires service role key. Please run this SQL in Supabase:')
+      console.log(createTableSQL)
+      
+      return false
+    }
+    
+    return true
+  } catch (error) {
+    console.error('Error checking/creating table:', error)
+    return false
   }
 }
 

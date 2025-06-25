@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 require('dotenv').config({ path: '.env.local' })
-const { searchN8nRepositories, getUserInfo, isActiveRepository, isValidN8nRepo } = require('../lib/github.js')
+const { getUserInfo } = require('../lib/github.js')
 const { insertLead, checkLeadExists } = require('../lib/supabase.js')
 
 // Automatic feedback loop for debugging
@@ -160,8 +160,79 @@ async function ensureDatabaseHealth() {
   }
 }
 
-async function scrapeRepositories() {
-  console.log('ℹ️  🚀 Starting automated n8n repository scraping...');
+// Custom search function for different terms
+async function searchN8nWorkflows(page = 1) {
+  const { Octokit } = require('octokit')
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN
+  })
+
+  try {
+    const response = await octokit.rest.search.repos({
+      q: 'n8n-workflows language:javascript language:typescript language:json',
+      sort: 'updated',
+      order: 'desc',
+      per_page: 100,
+      page: page
+    })
+
+    return response.data.items.map(repo => ({
+      id: repo.id,
+      name: repo.name,
+      full_name: repo.full_name,
+      description: repo.description || '',
+      html_url: repo.html_url,
+      owner: {
+        login: repo.owner?.login || 'unknown',
+        type: repo.owner?.type || 'User',
+      },
+      updated_at: repo.updated_at,
+      pushed_at: repo.pushed_at,
+      topics: repo.topics || [],
+    }))
+  } catch (error) {
+    console.error('Error searching repositories:', error)
+    return []
+  }
+}
+
+async function searchN8nNodes(page = 1) {
+  const { Octokit } = require('octokit')
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN
+  })
+
+  try {
+    const response = await octokit.rest.search.repos({
+      q: 'n8n-nodes language:javascript language:typescript language:json',
+      sort: 'updated',
+      order: 'desc',
+      per_page: 100,
+      page: page
+    })
+
+    return response.data.items.map(repo => ({
+      id: repo.id,
+      name: repo.name,
+      full_name: repo.full_name,
+      description: repo.description || '',
+      html_url: repo.html_url,
+      owner: {
+        login: repo.owner?.login || 'unknown',
+        type: repo.owner?.type || 'User',
+      },
+      updated_at: repo.updated_at,
+      pushed_at: repo.pushed_at,
+      topics: repo.topics || [],
+    }))
+  } catch (error) {
+    console.error('Error searching repositories:', error)
+    return []
+  }
+}
+
+async function scrapeWorkflows() {
+  console.log('ℹ️  🚀 Starting n8n-workflows repository scraping...');
   
   // Check database health first
   console.log('ℹ️  Checking database health...');
@@ -176,12 +247,12 @@ async function scrapeRepositories() {
   let newLeadsAdded = 0;
   let startTime = Date.now();
 
-  // Start from page 6 and continue for more pages
-  for (let page = 6; page <= 15; page++) {
+  // Search for n8n-workflows repositories
+  for (let page = 1; page <= 5; page++) {
     try {
-      console.log(`ℹ️  📄 Scraping page ${page}...`);
+      console.log(`ℹ️  📄 Scraping n8n-workflows page ${page}...`);
       
-      const repositories = await searchN8nRepositories(page);
+      const repositories = await searchN8nWorkflows(page);
       if (!repositories || repositories.length === 0) {
         console.log(`⚠️  No repositories found on page ${page}, stopping...`);
         break;
@@ -203,7 +274,7 @@ async function scrapeRepositories() {
           console.log(`ℹ️  👤 Fetching user info for ${repo.owner.login}...`);
           const userInfo = await getUserInfo(repo.owner.login);
           
-          if (!userInfo.email) {
+          if (!userInfo || !userInfo.email) {
             console.log(`ℹ️  ⏭️  Skipping ${repo.owner.login}/${repo.name} - no email found for ${repo.owner.login}`);
             continue;
           }
@@ -236,7 +307,80 @@ async function scrapeRepositories() {
       }
 
       // Add delay between pages to respect rate limits
-      if (page < 15) {
+      if (page < 5) {
+        console.log('ℹ️  ⏳ Waiting 2 seconds before next page...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+    } catch (error) {
+      console.error(`❌ Error scraping page ${page}:`, error.message);
+      break;
+    }
+  }
+
+  // Now search for n8n-nodes repositories
+  console.log('\nℹ️  🔄 Starting n8n-nodes repository scraping...');
+  
+  for (let page = 1; page <= 5; page++) {
+    try {
+      console.log(`ℹ️  📄 Scraping n8n-nodes page ${page}...`);
+      
+      const repositories = await searchN8nNodes(page);
+      if (!repositories || repositories.length === 0) {
+        console.log(`⚠️  No repositories found on page ${page}, stopping...`);
+        break;
+      }
+      
+      console.log(`ℹ️  Found ${repositories.length} repositories on page ${page}`);
+      totalRepositories += repositories.length;
+
+      for (const repo of repositories) {
+        try {
+          // Check if lead already exists
+          const existingLead = await checkLeadExists(repo.owner.login, repo.name);
+          if (existingLead) {
+            console.log(`ℹ️  Lead already exists: ${repo.owner.login}/${repo.name}`);
+            continue;
+          }
+
+          // Fetch user info to get email
+          console.log(`ℹ️  👤 Fetching user info for ${repo.owner.login}...`);
+          const userInfo = await getUserInfo(repo.owner.login);
+          
+          if (!userInfo || !userInfo.email) {
+            console.log(`ℹ️  ⏭️  Skipping ${repo.owner.login}/${repo.name} - no email found for ${repo.owner.login}`);
+            continue;
+          }
+
+          // Save lead to database
+          const leadData = {
+            github_username: repo.owner.login,
+            repo_name: repo.name,
+            repo_url: repo.html_url,
+            repo_description: repo.description,
+            email: userInfo.email,
+            last_activity: repo.pushed_at,
+            status: 'new',
+            email_sent: false,
+            email_approved: false,
+            email_pending_approval: false
+          };
+
+          const result = await insertLead(leadData);
+          if (result) {
+            console.log(`✅ Added lead: ${repo.owner.login}/${repo.name} (${userInfo.email})`);
+            newLeadsAdded++;
+          } else {
+            console.log(`❌ Failed to save lead: ${repo.owner.login}/${repo.name} - database error`);
+          }
+
+        } catch (error) {
+          console.error(`❌ Error processing repository ${repo.owner.login}/${repo.name}:`, error.message);
+        }
+      }
+
+      // Add delay between pages to respect rate limits
+      if (page < 5) {
         console.log('ℹ️  ⏳ Waiting 2 seconds before next page...');
         await new Promise(resolve => setTimeout(resolve, 2000));
       }
@@ -268,7 +412,7 @@ async function scrapeRepositories() {
 
 // Run the scraper
 if (require.main === module) {
-  scrapeRepositories()
+  scrapeWorkflows()
     .then(() => {
       console.log('\n✨ Scraping script completed successfully')
       process.exit(0)
@@ -279,4 +423,4 @@ if (require.main === module) {
     })
 }
 
-module.exports = { scrapeRepositories } 
+module.exports = { scrapeWorkflows } 
