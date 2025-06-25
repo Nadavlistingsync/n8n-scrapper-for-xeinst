@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   env: {
     GITHUB_TOKEN: process.env.GITHUB_TOKEN,
     RESEND_API_KEY: process.env.RESEND_API_KEY,

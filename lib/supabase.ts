@@ -65,6 +65,60 @@ export async function updateLeadStatus(id: string, status: Lead['status'], email
   return data[0]
 }
 
+export async function markEmailPendingApproval(leadId: string) {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ 
+      email_pending_approval: true,
+      email_approved: false
+    })
+    .eq('id', leadId)
+    .select()
+
+  if (error) {
+    console.error('Error marking email pending approval:', error)
+    return null
+  }
+
+  return data[0]
+}
+
+export async function approveEmail(leadId: string) {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ 
+      email_approved: true,
+      email_pending_approval: false
+    })
+    .eq('id', leadId)
+    .select()
+
+  if (error) {
+    console.error('Error approving email:', error)
+    return null
+  }
+
+  return data[0]
+}
+
+export async function rejectEmail(leadId: string) {
+  const { data, error } = await supabase
+    .from('leads')
+    .update({ 
+      email_approved: false,
+      email_pending_approval: false
+    })
+    .eq('id', leadId)
+    .select()
+
+  if (error) {
+    console.error('Error rejecting email:', error)
+    return null
+  }
+
+  return data[0]
+}
+
 export async function checkLeadExists(githubUsername: string, repoName: string) {
   const { data, error } = await supabase
     .from('leads')

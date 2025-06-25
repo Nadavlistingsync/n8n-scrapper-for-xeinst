@@ -8,7 +8,8 @@ const octokit = new Octokit({
 
 export async function searchN8nRepositories(page: number = 1): Promise<GitHubRepo[]> {
   try {
-    const query = 'topic:n8n OR topic:n8n-workflows'
+    // Search for repositories with n8n in name or description
+    const query = 'n8n language:javascript language:typescript language:json'
     const response = await octokit.rest.search.repos({
       q: query,
       sort: 'updated',
@@ -24,8 +25,8 @@ export async function searchN8nRepositories(page: number = 1): Promise<GitHubRep
       description: repo.description || '',
       html_url: repo.html_url,
       owner: {
-        login: repo.owner.login,
-        type: repo.owner.type,
+        login: repo.owner?.login || 'unknown',
+        type: repo.owner?.type || 'User',
       },
       updated_at: repo.updated_at,
       pushed_at: repo.pushed_at,

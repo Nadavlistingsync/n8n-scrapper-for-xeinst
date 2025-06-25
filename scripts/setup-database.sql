@@ -11,6 +11,8 @@ CREATE TABLE IF NOT EXISTS leads (
   email_sent BOOLEAN DEFAULT FALSE,
   email_sent_at TIMESTAMP WITH TIME ZONE,
   status TEXT DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'responded', 'converted')),
+  email_approved BOOLEAN DEFAULT FALSE,
+  email_pending_approval BOOLEAN DEFAULT FALSE,
   
   -- Ensure unique combination of github_username and repo_name
   UNIQUE(github_username, repo_name)
@@ -22,6 +24,8 @@ CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status);
 CREATE INDEX IF NOT EXISTS idx_leads_email_sent ON leads(email_sent);
 CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_leads_last_activity ON leads(last_activity DESC);
+CREATE INDEX IF NOT EXISTS idx_leads_email_approved ON leads(email_approved);
+CREATE INDEX IF NOT EXISTS idx_leads_email_pending_approval ON leads(email_pending_approval);
 
 -- Create a function to update the email_sent_at timestamp when email_sent is set to true
 CREATE OR REPLACE FUNCTION update_email_sent_at()
@@ -60,7 +64,9 @@ SELECT
   COUNT(*) FILTER (WHERE status = 'contacted') as contacted_leads,
   COUNT(*) FILTER (WHERE status = 'responded') as responded_leads,
   COUNT(*) FILTER (WHERE status = 'converted') as converted_leads,
-  COUNT(*) FILTER (WHERE last_activity > NOW() - INTERVAL '90 days') as active_leads
+  COUNT(*) FILTER (WHERE last_activity > NOW() - INTERVAL '90 days') as active_leads,
+  COUNT(*) FILTER (WHERE email_approved = TRUE) as approved_emails,
+  COUNT(*) FILTER (WHERE email_pending_approval = TRUE) as pending_approval
 FROM leads;
 
 -- Grant necessary permissions

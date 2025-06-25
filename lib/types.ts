@@ -10,6 +10,8 @@ export interface Lead {
   email_sent?: boolean
   email_sent_at?: string
   status: 'new' | 'contacted' | 'responded' | 'converted'
+  email_approved?: boolean
+  email_pending_approval?: boolean
 }
 
 export interface GitHubRepo {
@@ -48,4 +50,14 @@ export interface EmailResult {
   message: string
   emailsSent: number
   errors?: string[]
+}
+
+export interface PendingEmail {
+  leadId: string
+  github_username: string
+  email: string
+  repo_name: string
+  repo_description: string
+  emailContent: string
+  dmScript?: string
 } 

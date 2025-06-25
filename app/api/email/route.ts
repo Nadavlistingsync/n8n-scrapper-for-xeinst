@@ -11,28 +11,32 @@ export async function POST(request: NextRequest) {
     let leadsToEmail = []
 
     if (leadIds && Array.isArray(leadIds)) {
-      // Email specific leads
+      // Email specific leads (must be approved)
       const allLeads = await getLeads()
-      leadsToEmail = allLeads.filter(lead => leadIds.includes(lead.id))
+      leadsToEmail = allLeads.filter(lead => 
+        leadIds.includes(lead.id) && 
+        lead.email_approved === true
+      )
     } else {
-      // Email all leads with emails that haven't been contacted
+      // Email all leads that have been approved and haven't been contacted
       const allLeads = await getLeads()
       leadsToEmail = allLeads.filter(lead => 
         lead.email && 
         !lead.email_sent && 
-        lead.status === 'new'
+        lead.status === 'new' &&
+        lead.email_approved === true
       )
     }
 
     if (leadsToEmail.length === 0) {
       return NextResponse.json({
         success: false,
-        message: 'No leads found to email',
+        message: 'No approved leads found to email',
         emailsSent: 0,
       })
     }
 
-    console.log(`Preparing to email ${leadsToEmail.length} leads (dry run: ${dryRun})`)
+    console.log(`Preparing to email ${leadsToEmail.length} approved leads (dry run: ${dryRun})`)
 
     let emailsSent = 0
     const errors: string[] = []
