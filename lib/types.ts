@@ -12,6 +12,9 @@ export interface Lead {
   status: 'new' | 'contacted' | 'responded' | 'converted'
   email_approved?: boolean
   email_pending_approval?: boolean
+  ai_score?: number
+  ai_recommendation?: 'approve' | 'reject' | 'review'
+  ai_analysis?: string
 }
 
 export interface GitHubRepo {
@@ -60,4 +63,20 @@ export interface PendingEmail {
   repo_description: string
   emailContent: string
   dmScript?: string
+}
+
+export interface AIAnalysis {
+  score: number
+  recommendation: 'approve' | 'reject' | 'review'
+  reasoning: string
+  confidence: number
+  keyFactors: string[]
+}
+
+export interface AIAgentConfig {
+  model: string
+  temperature: number
+  maxTokens: number
+  autoApproveThreshold: number
+  autoRejectThreshold: number
 } 

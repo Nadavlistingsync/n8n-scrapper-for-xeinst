@@ -65,6 +65,25 @@ export async function updateLeadStatus(id: string, status: Lead['status'], email
   return data[0]
 }
 
+export async function updateLeadAIAnalysis(id: string, aiData: {
+  ai_score?: number
+  ai_recommendation?: 'approve' | 'reject' | 'review'
+  ai_analysis?: string
+}) {
+  const { data, error } = await supabase
+    .from('leads')
+    .update(aiData)
+    .eq('id', id)
+    .select()
+
+  if (error) {
+    console.error('Error updating AI analysis:', error)
+    return null
+  }
+
+  return data[0]
+}
+
 export async function markEmailPendingApproval(leadId: string) {
   const { data, error } = await supabase
     .from('leads')
@@ -117,6 +136,36 @@ export async function rejectEmail(leadId: string) {
   }
 
   return data[0]
+}
+
+export async function getLeadsForAIAnalysis() {
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .is('ai_score', null)
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching leads for AI analysis:', error)
+    return []
+  }
+
+  return data || []
+}
+
+export async function getLeadsByAIRecommendation(recommendation: 'approve' | 'reject' | 'review') {
+  const { data, error } = await supabase
+    .from('leads')
+    .select('*')
+    .eq('ai_recommendation', recommendation)
+    .order('ai_score', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching leads by AI recommendation:', error)
+    return []
+  }
+
+  return data || []
 }
 
 export async function checkLeadExists(githubUsername: string, repoName: string) {

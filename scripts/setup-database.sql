@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS leads (
   status TEXT DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'responded', 'converted')),
   email_approved BOOLEAN DEFAULT FALSE,
   email_pending_approval BOOLEAN DEFAULT FALSE,
+  ai_score DECIMAL(3,2),
+  ai_recommendation TEXT CHECK (ai_recommendation IN ('approve', 'reject', 'review')),
+  ai_analysis TEXT,
   
   -- Ensure unique combination of github_username and repo_name
   UNIQUE(github_username, repo_name)
@@ -26,6 +29,8 @@ CREATE INDEX IF NOT EXISTS idx_leads_created_at ON leads(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_leads_last_activity ON leads(last_activity DESC);
 CREATE INDEX IF NOT EXISTS idx_leads_email_approved ON leads(email_approved);
 CREATE INDEX IF NOT EXISTS idx_leads_email_pending_approval ON leads(email_pending_approval);
+CREATE INDEX IF NOT EXISTS idx_leads_ai_score ON leads(ai_score DESC);
+CREATE INDEX IF NOT EXISTS idx_leads_ai_recommendation ON leads(ai_recommendation);
 
 -- Create a function to update the email_sent_at timestamp when email_sent is set to true
 CREATE OR REPLACE FUNCTION update_email_sent_at()
@@ -66,7 +71,12 @@ SELECT
   COUNT(*) FILTER (WHERE status = 'converted') as converted_leads,
   COUNT(*) FILTER (WHERE last_activity > NOW() - INTERVAL '90 days') as active_leads,
   COUNT(*) FILTER (WHERE email_approved = TRUE) as approved_emails,
-  COUNT(*) FILTER (WHERE email_pending_approval = TRUE) as pending_approval
+  COUNT(*) FILTER (WHERE email_pending_approval = TRUE) as pending_approval,
+  COUNT(*) FILTER (WHERE ai_score IS NOT NULL) as ai_analyzed,
+  COUNT(*) FILTER (WHERE ai_recommendation = 'approve') as ai_recommended_approve,
+  COUNT(*) FILTER (WHERE ai_recommendation = 'reject') as ai_recommended_reject,
+  COUNT(*) FILTER (WHERE ai_recommendation = 'review') as ai_recommended_review,
+  AVG(ai_score) FILTER (WHERE ai_score IS NOT NULL) as avg_ai_score
 FROM leads;
 
 -- Grant necessary permissions
