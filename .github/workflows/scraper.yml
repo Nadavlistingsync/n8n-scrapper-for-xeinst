@@ -1,0 +1,57 @@
+name: Automated Lead Scraper
+
+on:
+  schedule:
+    # Run every day at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  scrape-leads:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Create .env.local file
+      run: |
+        cat > .env.local << EOF
+        GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        SUPABASE_URL=${{ secrets.SUPABASE_URL }}
+        SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+        EOF
+        
+    - name: Run main scraper
+      run: node scripts/scrape.js
+      
+    - name: Run workflow scraper
+      run: node scripts/scrape-workflows.js
+      
+    - name: Run additional scraper
+      run: node scripts/scrape-additional.js
+      
+    - name: Run AI automation scraper
+      run: node scripts/scrape-ai-automation.js
+      
+    - name: Check lead count
+      run: node scripts/check-leads.js
+      
+    - name: Commit and push results
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff --quiet && git diff --staged --quiet || git commit -m "feat: automated scraping results - $(date)"
+        git push 
