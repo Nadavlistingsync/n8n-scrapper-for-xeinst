@@ -106,4 +106,8 @@ node_modules/
 .dynamodb/
 
 # TernJS port file
-.tern-port 
+.tern-port
+
+# Google Sheets integration
+google-credentials.json
+google-sheets-config.json 
