@@ -10,22 +10,11 @@ const csv = require('csv-parser')
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID || '1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0'
 
-// Notion migration format headers
-const NOTION_HEADERS = [
-  "Notion ID",
+// Simplified headers - only essential fields
+const SIMPLIFIED_HEADERS = [
   "GitHub Username", 
-  "Repository Name",
   "Repository URL",
-  "Repository Description",
-  "Email",
-  "Last Activity",
-  "Status",
-  "Email Sent",
-  "Email Approved",
-  "Email Pending Approval",
-  "Created Time",
-  "Last Edited Time",
-  "Notion URL"
+  "Email"
 ]
 
 // Batch upload settings
@@ -90,39 +79,20 @@ function parseTextFile(filePath) {
   }
 }
 
-function normalizeDataToNotionFormat(data, sourceFile) {
-  // If data already has Notion format headers, use it as is
-  if (data.length > 0 && data[0]['Notion ID']) {
-    return data.map(row => ({
-      ...row,
-      'Source File': sourceFile
-    }))
-  }
-
-  // Convert other formats to Notion format
+function normalizeDataToSimplifiedFormat(data, sourceFile) {
+  // Convert data to simplified format with only essential fields
   return data.map(row => {
-    const normalizedRow = {}
+    const simplifiedRow = {}
     
-    // Map existing fields to Notion format
-    normalizedRow['Notion ID'] = row['Notion ID'] || row['ID'] || row['id'] || `generated-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
-    normalizedRow['GitHub Username'] = row['GitHub Username'] || row['Username'] || row['username'] || row['GitHub'] || ''
-    normalizedRow['Repository Name'] = row['Repository Name'] || row['Repo Name'] || row['repo_name'] || row['Name'] || ''
-    normalizedRow['Repository URL'] = row['Repository URL'] || row['Repo URL'] || row['repo_url'] || row['URL'] || row['url'] || ''
-    normalizedRow['Repository Description'] = row['Repository Description'] || row['Description'] || row['description'] || row['Repo Description'] || ''
-    normalizedRow['Email'] = row['Email'] || row['email'] || ''
-    normalizedRow['Last Activity'] = row['Last Activity'] || row['last_activity'] || row['LastActivity'] || ''
-    normalizedRow['Status'] = row['Status'] || row['status'] || 'new'
-    normalizedRow['Email Sent'] = row['Email Sent'] || row['email_sent'] || 'No'
-    normalizedRow['Email Approved'] = row['Email Approved'] || row['email_approved'] || 'No'
-    normalizedRow['Email Pending Approval'] = row['Email Pending Approval'] || row['email_pending'] || 'No'
-    normalizedRow['Created Time'] = row['Created Time'] || row['created_time'] || row['CreatedTime'] || new Date().toISOString()
-    normalizedRow['Last Edited Time'] = row['Last Edited Time'] || row['last_edited_time'] || row['LastEditedTime'] || new Date().toISOString()
-    normalizedRow['Notion URL'] = row['Notion URL'] || row['notion_url'] || row['NotionURL'] || ''
+    // Extract only the essential fields
+    simplifiedRow['GitHub Username'] = row['GitHub Username'] || row['Username'] || row['username'] || row['GitHub'] || ''
+    simplifiedRow['Repository URL'] = row['Repository URL'] || row['Repo URL'] || row['repo_url'] || row['URL'] || row['url'] || ''
+    simplifiedRow['Email'] = row['Email'] || row['email'] || ''
     
-    // Add source file info
-    normalizedRow['Source File'] = sourceFile
-    
-    return normalizedRow
+    return simplifiedRow
+  }).filter(row => {
+    // Only keep rows that have at least an email or GitHub username
+    return row['Email'] || row['GitHub Username']
   })
 }
 
@@ -141,7 +111,7 @@ async function createSheet(sheets, spreadsheetId, sheetName, rowCount) {
               title: sheetName,
               gridProperties: {
                 rowCount: rowCount,
-                columnCount: NOTION_HEADERS.length,
+                columnCount: SIMPLIFIED_HEADERS.length,
               },
             },
           },
@@ -246,10 +216,11 @@ async function uploadDataToSheets(sheets, spreadsheetId, data, headers) {
 
 async function combineAllDataToSingleSheet() {
   const startTime = new Date()
-  console.log('🚀 Combining all data into multiple Google Sheets (Sheet1, Sheet2, etc.)...')
+  console.log('🚀 Combining all data into simplified format (GitHub Username, Repository URL, Email)...')
   console.log(`📊 Using spreadsheet ID: ${SPREADSHEET_ID}`)
   console.log(`📦 Batch size: ${BATCH_SIZE} rows`)
   console.log(`📋 Max rows per sheet: ${MAX_ROWS_PER_SHEET} (including header)`)
+  console.log(`📋 Columns: ${SIMPLIFIED_HEADERS.join(', ')}`)
   console.log(`⏱️  Delay between batches: ${DELAY_BETWEEN_BATCHES}ms`)
   
   try {
@@ -271,9 +242,9 @@ async function combineAllDataToSingleSheet() {
           const data = await parseCSVFile(filePath)
           
           if (data.length > 0) {
-            const normalizedData = normalizeDataToNotionFormat(data, file)
+            const normalizedData = normalizeDataToSimplifiedFormat(data, file)
             allData.push(...normalizedData)
-            console.log(`✅ Added ${data.length} rows from ${file}`)
+            console.log(`✅ Added ${normalizedData.length} rows from ${file}`)
           }
           
         } else if (file.endsWith('.json')) {
@@ -283,14 +254,14 @@ async function combineAllDataToSingleSheet() {
           if (parsedData.type === 'json') {
             const jsonData = parsedData.data
             if (Array.isArray(jsonData)) {
-              const normalizedData = normalizeDataToNotionFormat(jsonData, file)
+              const normalizedData = normalizeDataToSimplifiedFormat(jsonData, file)
               allData.push(...normalizedData)
-              console.log(`✅ Added ${jsonData.length} items from ${file}`)
+              console.log(`✅ Added ${normalizedData.length} items from ${file}`)
             } else {
               // Single JSON object
-              const normalizedData = normalizeDataToNotionFormat([jsonData], file)
+              const normalizedData = normalizeDataToSimplifiedFormat([jsonData], file)
               allData.push(...normalizedData)
-              console.log(`✅ Added 1 item from ${file}`)
+              console.log(`✅ Added ${normalizedData.length} item from ${file}`)
             }
           }
           
@@ -301,21 +272,9 @@ async function combineAllDataToSingleSheet() {
           if (parsedData.type === 'email_list') {
             const emails = parsedData.data
             const emailData = emails.map(email => ({
-              'Notion ID': `email-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
               'GitHub Username': '',
-              'Repository Name': '',
               'Repository URL': '',
-              'Repository Description': '',
-              'Email': email,
-              'Last Activity': '',
-              'Status': 'new',
-              'Email Sent': 'No',
-              'Email Approved': 'No',
-              'Email Pending Approval': 'No',
-              'Created Time': new Date().toISOString(),
-              'Last Edited Time': new Date().toISOString(),
-              'Notion URL': '',
-              'Source File': file
+              'Email': email
             }))
             allData.push(...emailData)
             console.log(`✅ Added ${emails.length} emails from ${file}`)
@@ -334,7 +293,7 @@ async function combineAllDataToSingleSheet() {
     
     console.log(`\n📊 Total combined records: ${allData.length}`)
     
-    // Remove duplicates based on key fields (Email + Repository URL combination)
+    // Remove duplicates based on Email + Repository URL combination
     const seen = new Set()
     const dedupedData = allData.filter(row => {
       const key = `${row['Email'] || ''}-${row['Repository URL'] || ''}-${row['GitHub Username'] || ''}`
@@ -345,13 +304,13 @@ async function combineAllDataToSingleSheet() {
     console.log(`\n🧹 Deduplicated records: ${dedupedData.length}`)
 
     // Upload data to multiple sheets
-    const sheetsCreated = await uploadDataToSheets(sheets, SPREADSHEET_ID, dedupedData, NOTION_HEADERS)
+    const sheetsCreated = await uploadDataToSheets(sheets, SPREADSHEET_ID, dedupedData, SIMPLIFIED_HEADERS)
 
     const endTime = new Date()
     const duration = ((endTime - startTime) / 1000).toFixed(2)
     console.log(`\n🎉 All data uploaded to multiple sheets!`)
     console.log(`📊 Total records: ${dedupedData.length}`)
-    console.log(`📋 Total columns: ${NOTION_HEADERS.length}`)
+    console.log(`📋 Total columns: ${SIMPLIFIED_HEADERS.length}`)
     console.log(`🗂️  Sheets created: ${sheetsCreated}`)
     console.log(`📦 Max rows per sheet: ${MAX_ROWS_PER_SHEET - 1} (excluding header)`)
     console.log(`⏱️  Duration: ${duration} seconds`)
@@ -363,13 +322,13 @@ async function combineAllDataToSingleSheet() {
       spreadsheetUrl: `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}`,
       exportDate: new Date().toISOString(),
       totalRecords: dedupedData.length,
-      totalColumns: NOTION_HEADERS.length,
+      totalColumns: SIMPLIFIED_HEADERS.length,
       sheetsCreated: sheetsCreated,
       maxRowsPerSheet: MAX_ROWS_PER_SHEET - 1,
       batchSize: BATCH_SIZE,
       delayBetweenBatches: DELAY_BETWEEN_BATCHES,
-      headers: NOTION_HEADERS,
-      format: 'Notion Migration Format',
+      headers: SIMPLIFIED_HEADERS,
+      format: 'Simplified Format (GitHub Username, Repository URL, Email)',
       sheetNames: Array.from({length: sheetsCreated}, (_, i) => `Sheet${i + 1}`)
     }
     fs.writeFileSync('combined-data-summary.json', JSON.stringify(summary, null, 2))
