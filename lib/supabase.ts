@@ -238,4 +238,18 @@ export async function checkLeadExists(githubUsername: string, repoName: string) 
   }
 
   return !!data
+}
+
+export async function deleteAllLeads() {
+  const { error } = await supabase
+    .from('leads')
+    .delete()
+    .neq('id', '') // delete all rows
+
+  if (error) {
+    console.error('Error deleting all leads:', error)
+    return false
+  }
+
+  return true
 } 
