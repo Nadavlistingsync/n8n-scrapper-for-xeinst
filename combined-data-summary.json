@@ -1,0 +1,28 @@
+{
+  "spreadsheetId": "1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
+  "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
+  "exportDate": "2025-06-27T10:33:59.648Z",
+  "totalRecords": 1978,
+  "totalColumns": 14,
+  "sheetsCreated": 1,
+  "rowsPerSheet": [
+    1978
+  ],
+  "headers": [
+    "Notion ID",
+    "GitHub Username",
+    "Repository Name",
+    "Repository URL",
+    "Repository Description",
+    "Email",
+    "Last Activity",
+    "Status",
+    "Email Sent",
+    "Email Approved",
+    "Email Pending Approval",
+    "Created Time",
+    "Last Edited Time",
+    "Notion URL"
+  ],
+  "format": "Notion Migration Format"
+}

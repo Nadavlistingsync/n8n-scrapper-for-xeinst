@@ -18,6 +18,7 @@
     "autoprefixer": "^10.4.16",
     "axios": "^1.10.0",
     "cheerio": "^1.1.0",
+    "csv-parser": "^3.2.0",
     "date-fns": "^2.30.0",
     "googleapis": "^126.0.1",
     "langchain": "^0.0.208",
