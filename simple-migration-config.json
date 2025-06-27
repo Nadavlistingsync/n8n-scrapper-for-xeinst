@@ -1,0 +1,13 @@
+{
+  "migrationDate": "2025-06-27T09:55:49.595Z",
+  "totalRecords": 1001,
+  "emailRecords": 999,
+  "duration": 25,
+  "source": "Notion",
+  "destination": "CSV Files",
+  "files": {
+    "completeData": "/Users/nadavbenedek/n8n scrapper for xeinst/exports/notion-migration-2025-06-27.csv",
+    "emailCampaign": "/Users/nadavbenedek/n8n scrapper for xeinst/exports/notion-email-campaign-2025-06-27.csv",
+    "analytics": "/Users/nadavbenedek/n8n scrapper for xeinst/exports/notion-analytics-2025-06-27.json"
+  }
+}

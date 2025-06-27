@@ -1,0 +1,9 @@
+{
+  "totalRecords": 1001,
+  "recordsWithEmails": 999,
+  "successRate": 100,
+  "emailSentCount": 0,
+  "emailApprovedCount": 0,
+  "emailPendingCount": 0,
+  "migrationDate": "2025-06-27T09:55:49.594Z"
+}
