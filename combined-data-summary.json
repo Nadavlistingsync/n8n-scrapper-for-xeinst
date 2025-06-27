@@ -1,11 +1,11 @@
 {
   "spreadsheetId": "1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
   "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
-  "exportDate": "2025-06-27T10:46:52.102Z",
+  "exportDate": "2025-06-27T10:50:52.352Z",
   "totalRecords": 1977,
   "totalColumns": 3,
-  "sheetsCreated": 2,
-  "maxRowsPerSheet": 999,
+  "sheetsCreated": 1,
+  "maxRowsPerSheet": 9999,
   "batchSize": 500,
   "delayBetweenBatches": 1000,
   "headers": [
@@ -15,7 +15,6 @@
   ],
   "format": "Simplified Format (GitHub Username, Repository URL, Email)",
   "sheetNames": [
-    "Sheet1",
-    "Sheet2"
+    "Sheet1"
   ]
 }

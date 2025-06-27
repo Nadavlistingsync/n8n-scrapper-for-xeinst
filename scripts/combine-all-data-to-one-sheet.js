@@ -20,7 +20,7 @@ const SIMPLIFIED_HEADERS = [
 // Batch upload settings
 const BATCH_SIZE = 500 // Upload 500 rows at a time
 const DELAY_BETWEEN_BATCHES = 1000 // 1 second delay between batches
-const MAX_ROWS_PER_SHEET = 1000 // Max rows per sheet (including header)
+const MAX_ROWS_PER_SHEET = 10000 // Max rows per sheet (including header) - increased since we only have 3 columns
 
 async function getGoogleAuthClient() {
   try {
