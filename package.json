@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@langchain/openai": "^0.0.14",
+    "@notionhq/client": "^2.3.0",
     "@supabase/supabase-js": "^2.38.5",
     "autoprefixer": "^10.4.16",
     "axios": "^1.10.0",

@@ -32,7 +32,7 @@ export async function sendOutreachEmail(lead: Lead): Promise<boolean> {
   }
 }
 
-function generateEmailContent(lead: Lead): string {
+export function generateEmailContent(lead: Lead): string {
   return `
     <!DOCTYPE html>
     <html>
@@ -92,17 +92,5 @@ function generateEmailContent(lead: Lead): string {
 }
 
 export function generateDMScript(lead: Lead): string {
-  return `
-Hey! 👋
-
-I noticed your awesome n8n workflow "${lead.repo_name}" on GitHub and I'm genuinely impressed!
-
-We're building Xeinst - a platform where developers can earn money by listing their n8n workflows and automation agents.
-
-Your workflow looks perfect for our marketplace! Would you be interested in joining our waitlist? You'd be one of our first creators.
-
-Check it out: https://xeinst.com/waitlist
-
-Let me know what you think! 🚀
-  `.trim()
-} 
+  return `Hey ${lead.github_username}, I saw your n8n workflow "${lead.repo_name}" and wanted to connect! 🚀`;
+}
