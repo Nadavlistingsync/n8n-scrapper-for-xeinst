@@ -31,6 +31,7 @@ const NOTION_HEADERS = [
 // Batch upload settings
 const BATCH_SIZE = 500 // Upload 500 rows at a time
 const DELAY_BETWEEN_BATCHES = 1000 // 1 second delay between batches
+const MAX_ROWS_PER_SHEET = 1000 // Max rows per sheet (including header)
 
 async function getGoogleAuthClient() {
   try {
@@ -129,61 +130,126 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function uploadDataInBatches(sheets, spreadsheetId, sheetName, data, headers) {
-  console.log(`📤 Starting batch upload to ${sheetName}...`)
-  
-  // First, upload headers
-  await sheets.spreadsheets.values.update({
-    spreadsheetId,
-    range: `${sheetName}!A1`,
-    valueInputOption: 'RAW',
-    resource: { values: [headers] },
-  })
-  console.log(`✅ Headers uploaded to ${sheetName}`)
-  
-  // Upload data in batches
-  let currentRow = 2 // Start after headers
-  let batchNumber = 1
-  
-  for (let i = 0; i < data.length; i += BATCH_SIZE) {
-    const batch = data.slice(i, i + BATCH_SIZE)
-    const values = batch.map(row => headers.map(header => row[header] || ''))
-    
-    const range = `${sheetName}!A${currentRow}`
-    
-    try {
-      await sheets.spreadsheets.values.update({
-        spreadsheetId,
-        range,
-        valueInputOption: 'RAW',
-        resource: { values },
-      })
-      
-      console.log(`✅ Batch ${batchNumber}: Uploaded ${batch.length} rows (rows ${currentRow}-${currentRow + batch.length - 1})`)
-      
-      currentRow += batch.length
-      batchNumber++
-      
-      // Add delay between batches to avoid rate limits
-      if (i + BATCH_SIZE < data.length) {
-        console.log(`⏳ Waiting ${DELAY_BETWEEN_BATCHES}ms before next batch...`)
-        await sleep(DELAY_BETWEEN_BATCHES)
-      }
-      
-    } catch (error) {
-      console.error(`❌ Error uploading batch ${batchNumber}:`, error)
-      throw error
+async function createSheet(sheets, spreadsheetId, sheetName, rowCount) {
+  try {
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId,
+      resource: {
+        requests: [{
+          addSheet: {
+            properties: {
+              title: sheetName,
+              gridProperties: {
+                rowCount: rowCount,
+                columnCount: NOTION_HEADERS.length,
+              },
+            },
+          },
+        }],
+      },
+    })
+    console.log(`✅ Created sheet: ${sheetName}`)
+    return true
+  } catch (e) {
+    if (e.message && e.message.includes('already exists')) {
+      console.log(`✅ Sheet ${sheetName} already exists`)
+      return true
+    } else {
+      console.error(`❌ Error creating sheet ${sheetName}:`, e)
+      return false
     }
   }
+}
+
+async function uploadDataToSheets(sheets, spreadsheetId, data, headers) {
+  console.log(`📤 Starting upload to multiple sheets...`)
   
-  console.log(`🎉 All data uploaded to ${sheetName}!`)
+  let currentDataIndex = 0
+  let currentSheetNumber = 1
+  let totalUploaded = 0
+  
+  while (currentDataIndex < data.length) {
+    const sheetName = `Sheet${currentSheetNumber}`
+    const dataRemaining = data.length - currentDataIndex
+    const maxDataForThisSheet = MAX_ROWS_PER_SHEET - 1 // -1 for header
+    const dataForThisSheet = Math.min(dataRemaining, maxDataForThisSheet)
+    
+    console.log(`\n📊 Processing ${sheetName}: ${dataForThisSheet} rows (${currentDataIndex + 1}-${currentDataIndex + dataForThisSheet})`)
+    
+    // Create sheet if needed
+    await createSheet(sheets, spreadsheetId, sheetName, dataForThisSheet + 1)
+    
+    // Clear existing content
+    try {
+      await sheets.spreadsheets.values.clear({
+        spreadsheetId,
+        range: sheetName,
+      })
+    } catch (e) {
+      // Ignore if sheet doesn't exist
+    }
+    
+    // Upload headers first
+    await sheets.spreadsheets.values.update({
+      spreadsheetId,
+      range: `${sheetName}!A1`,
+      valueInputOption: 'RAW',
+      resource: { values: [headers] },
+    })
+    console.log(`✅ Headers uploaded to ${sheetName}`)
+    
+    // Upload data in batches
+    let currentRow = 2 // Start after headers
+    let batchNumber = 1
+    
+    for (let i = 0; i < dataForThisSheet; i += BATCH_SIZE) {
+      const batch = data.slice(currentDataIndex + i, currentDataIndex + i + BATCH_SIZE)
+      const values = batch.map(row => headers.map(header => row[header] || ''))
+      
+      const range = `${sheetName}!A${currentRow}`
+      
+      try {
+        await sheets.spreadsheets.values.update({
+          spreadsheetId,
+          range,
+          valueInputOption: 'RAW',
+          resource: { values },
+        })
+        
+        console.log(`✅ ${sheetName} - Batch ${batchNumber}: Uploaded ${batch.length} rows (rows ${currentRow}-${currentRow + batch.length - 1})`)
+        
+        currentRow += batch.length
+        batchNumber++
+        
+        // Add delay between batches to avoid rate limits
+        if (i + BATCH_SIZE < dataForThisSheet) {
+          console.log(`⏳ Waiting ${DELAY_BETWEEN_BATCHES}ms before next batch...`)
+          await sleep(DELAY_BETWEEN_BATCHES)
+        }
+        
+      } catch (error) {
+        console.error(`❌ Error uploading batch ${batchNumber} to ${sheetName}:`, error)
+        throw error
+      }
+    }
+    
+    totalUploaded += dataForThisSheet
+    currentDataIndex += dataForThisSheet
+    currentSheetNumber++
+    
+    console.log(`✅ Completed ${sheetName}: ${dataForThisSheet} rows uploaded`)
+  }
+  
+  console.log(`🎉 All data uploaded to ${currentSheetNumber - 1} sheets!`)
+  return currentSheetNumber - 1
 }
 
 async function combineAllDataToSingleSheet() {
   const startTime = new Date()
-  console.log('🚀 Combining all data into single Google Sheet (slow upload)...')
+  console.log('🚀 Combining all data into multiple Google Sheets (Sheet1, Sheet2, etc.)...')
   console.log(`📊 Using spreadsheet ID: ${SPREADSHEET_ID}`)
   console.log(`📦 Batch size: ${BATCH_SIZE} rows`)
+  console.log(`📋 Max rows per sheet: ${MAX_ROWS_PER_SHEET} (including header)`)
   console.log(`⏱️  Delay between batches: ${DELAY_BETWEEN_BATCHES}ms`)
   
   try {
@@ -278,56 +344,16 @@ async function combineAllDataToSingleSheet() {
     })
     console.log(`\n🧹 Deduplicated records: ${dedupedData.length}`)
 
-    // Use a single sheet name
-    const sheetName = 'AllDataCombined'
-    
-    // Clear existing content
-    try {
-      await sheets.spreadsheets.values.clear({
-        spreadsheetId: SPREADSHEET_ID,
-        range: sheetName,
-      })
-      console.log(`🧹 Cleared existing content from ${sheetName}`)
-    } catch (e) {
-      console.log(`📝 Sheet ${sheetName} doesn't exist, will create it`)
-    }
-    
-    // Create sheet if it doesn't exist
-    try {
-      await sheets.spreadsheets.batchUpdate({
-        spreadsheetId: SPREADSHEET_ID,
-        resource: {
-          requests: [{
-            addSheet: {
-              properties: {
-                title: sheetName,
-                gridProperties: {
-                  rowCount: dedupedData.length + 1,
-                  columnCount: NOTION_HEADERS.length,
-                },
-              },
-            },
-          }],
-        },
-      })
-      console.log(`✅ Created sheet: ${sheetName}`)
-    } catch (e) {
-      if (e.message && e.message.includes('already exists')) {
-        console.log(`✅ Sheet ${sheetName} already exists`)
-      } else {
-        throw e
-      }
-    }
-    
-    // Upload data in batches
-    await uploadDataInBatches(sheets, SPREADSHEET_ID, sheetName, dedupedData, NOTION_HEADERS)
+    // Upload data to multiple sheets
+    const sheetsCreated = await uploadDataToSheets(sheets, SPREADSHEET_ID, dedupedData, NOTION_HEADERS)
 
     const endTime = new Date()
     const duration = ((endTime - startTime) / 1000).toFixed(2)
-    console.log(`\n🎉 All data uploaded to single sheet!`)
+    console.log(`\n🎉 All data uploaded to multiple sheets!`)
     console.log(`📊 Total records: ${dedupedData.length}`)
     console.log(`📋 Total columns: ${NOTION_HEADERS.length}`)
-    console.log(`📦 Batches uploaded: ${Math.ceil(dedupedData.length / BATCH_SIZE)}`)
+    console.log(`🗂️  Sheets created: ${sheetsCreated}`)
+    console.log(`📦 Max rows per sheet: ${MAX_ROWS_PER_SHEET - 1} (excluding header)`)
     console.log(`⏱️  Duration: ${duration} seconds`)
     console.log(`📈 Spreadsheet URL: https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}`)
     
@@ -338,12 +364,13 @@ async function combineAllDataToSingleSheet() {
       exportDate: new Date().toISOString(),
       totalRecords: dedupedData.length,
       totalColumns: NOTION_HEADERS.length,
-      sheetName: sheetName,
-      batchesUploaded: Math.ceil(dedupedData.length / BATCH_SIZE),
+      sheetsCreated: sheetsCreated,
+      maxRowsPerSheet: MAX_ROWS_PER_SHEET - 1,
       batchSize: BATCH_SIZE,
       delayBetweenBatches: DELAY_BETWEEN_BATCHES,
       headers: NOTION_HEADERS,
-      format: 'Notion Migration Format'
+      format: 'Notion Migration Format',
+      sheetNames: Array.from({length: sheetsCreated}, (_, i) => `Sheet${i + 1}`)
     }
     fs.writeFileSync('combined-data-summary.json', JSON.stringify(summary, null, 2))
     console.log(`💾 Summary saved to: combined-data-summary.json`)
