@@ -1,0 +1,14 @@
+{
+  "exportDate": "2025-08-14T15:20:17.085Z",
+  "totalLeads": 52,
+  "emailCampaignReady": 0,
+  "uniqueEmails": 44,
+  "aiAnalyzed": 0,
+  "files": {
+    "mainData": "/Users/nadavbenedek/n8n scrapper for xeinst/data/leads-export-2025-08-14.csv",
+    "emailCampaign": "/Users/nadavbenedek/n8n scrapper for xeinst/data/email-campaign-2025-08-14.csv",
+    "analytics": "/Users/nadavbenedek/n8n scrapper for xeinst/data/analytics-2025-08-14.csv",
+    "emailsOnly": "/Users/nadavbenedek/n8n scrapper for xeinst/data/emails-only-2025-08-14.txt",
+    "emailsWithNames": "/Users/nadavbenedek/n8n scrapper for xeinst/data/emails-with-names-2025-08-14.txt"
+  }
+}

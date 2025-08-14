@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getLeads, updateLeadStatus } from '@/lib/supabase'
+import { getAllLeads, updateLead } from '@/lib/google-sheets-db'
 import { sendOutreachEmail } from '@/lib/email'
 import { EmailResult } from '@/lib/types'
 
@@ -12,14 +12,14 @@ export async function POST(request: NextRequest) {
 
     if (leadIds && Array.isArray(leadIds)) {
       // Email specific leads (must be approved)
-      const allLeads = await getLeads()
+      const allLeads = await getAllLeads()
       leadsToEmail = allLeads.filter(lead => 
         leadIds.includes(lead.id) && 
         lead.email_approved === true
       )
     } else {
       // Email all leads that have been approved and haven't been contacted
-      const allLeads = await getLeads()
+      const allLeads = await getAllLeads()
       leadsToEmail = allLeads.filter(lead => 
         lead.email && 
         !lead.email_sent && 
@@ -54,7 +54,11 @@ export async function POST(request: NextRequest) {
         } else {
           const emailSent = await sendOutreachEmail(lead)
           if (emailSent) {
-            await updateLeadStatus(lead.id, 'contacted', true)
+            await updateLead(lead.id, { 
+              status: 'contacted', 
+              email_sent: true, 
+              email_sent_at: new Date().toISOString() 
+            })
             emailsSent++
             console.log(`Email sent to ${lead.email}`)
           } else {

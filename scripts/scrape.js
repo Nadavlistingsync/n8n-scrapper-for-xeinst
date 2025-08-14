@@ -2,7 +2,7 @@
 
 require('dotenv').config({ path: '.env.local' })
 const { searchN8nRepositories, getUserInfo, isActiveRepository, isValidN8nRepo } = require('../lib/github.js')
-const { insertLead, checkLeadExists } = require('../lib/supabase.js')
+const { insertLead, checkLeadExists } = require('../lib/google-sheets-db')
 
 // Automatic feedback loop for debugging
 class ScrapingFeedbackLoop {
@@ -79,83 +79,22 @@ class ScrapingFeedbackLoop {
   }
 }
 
-// Database health check with automatic table creation
+// Database health check for Google Sheets system
 async function ensureDatabaseHealth() {
   const feedback = new ScrapingFeedbackLoop()
   
   try {
-    feedback.logInfo('Checking database health...')
+    feedback.logInfo('Checking Google Sheets database health...')
     
     // Test database connection by trying to check if a lead exists
-    const { data, error } = await checkLeadExists('test', 'test')
+    const exists = await checkLeadExists('test', 'test')
     
-    if (error && error.code === '42P01') {
-      feedback.logWarning('Leads table does not exist, attempting to create...')
-      
-      // Try to create the table
-      const { createClient } = require('@supabase/supabase-js')
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY
-      
-      if (!supabaseUrl || !supabaseKey) {
-        feedback.logError('Missing Supabase credentials for table creation')
-        return false
-      }
-      
-      const supabase = createClient(supabaseUrl, supabaseKey)
-      
-      // Create table SQL
-      const createTableSQL = `
-        CREATE TABLE IF NOT EXISTS leads (
-          id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-          github_username TEXT NOT NULL,
-          repo_name TEXT NOT NULL,
-          repo_url TEXT NOT NULL,
-          repo_description TEXT,
-          email TEXT,
-          last_activity TIMESTAMP WITH TIME ZONE NOT NULL,
-          created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-          email_sent BOOLEAN DEFAULT FALSE,
-          email_sent_at TIMESTAMP WITH TIME ZONE,
-          status TEXT DEFAULT 'new' CHECK (status IN ('new', 'contacted', 'responded', 'converted')),
-          email_approved BOOLEAN DEFAULT FALSE,
-          email_pending_approval BOOLEAN DEFAULT FALSE,
-          ai_score DECIMAL(3,2),
-          ai_recommendation TEXT CHECK (ai_recommendation IN ('approve', 'reject', 'review')),
-          ai_analysis TEXT,
-          UNIQUE(github_username, repo_name)
-        );
-      `
-      
-      try {
-        await supabase.rpc('exec_sql', { sql: createTableSQL })
-        feedback.logSuccess('Leads table created successfully')
-        
-        // Wait a moment for the table to be ready
-        await new Promise(resolve => setTimeout(resolve, 2000))
-        
-        // Test the table again
-        const { data: testData, error: testError } = await checkLeadExists('test', 'test')
-        if (testError && testError.code === '42P01') {
-          feedback.logError('Table creation failed - table still does not exist')
-          return false
-        }
-        
-        return true
-      } catch (createError) {
-        feedback.logError('Failed to create table automatically', createError)
-        feedback.logInfo('Please run: node scripts/create-table-simple.js')
-        return false
-      }
-    } else if (error) {
-      feedback.logError('Database connection failed', error)
-      return false
-    } else {
-      feedback.logSuccess('Database health check passed')
-      return true
-    }
+    // The Google Sheets system always returns a boolean, no errors
+    feedback.logSuccess('Google Sheets database health check passed')
+    return true
+    
   } catch (error) {
-    feedback.logError('Database health check failed', error)
+    feedback.logError('Google Sheets database health check failed', error)
     return false
   }
 }

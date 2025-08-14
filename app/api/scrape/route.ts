@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { searchN8nRepositories, getUserInfo, isActiveRepository, isValidN8nRepo } from '@/lib/github'
-import { insertLead, checkLeadExists } from '@/lib/supabase'
+import { insertLead, checkLeadExists } from '@/lib/google-sheets-db'
 import { ScrapeResult } from '@/lib/types'
 
 export async function GET(request: NextRequest) {

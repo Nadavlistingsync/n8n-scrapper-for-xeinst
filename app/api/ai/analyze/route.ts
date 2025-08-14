@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getLeadsForAIAnalysis, updateLeadAIAnalysis, getLeads } from '@/lib/supabase'
+import { getLeadsForAIAnalysis, updateLead } from '@/lib/google-sheets-db'
 import { batchAnalyzeLeads, autoApproveLeads } from '@/lib/ai-agent'
 import { AIAgentConfig } from '@/lib/types'
 
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
 
       // Update database with approved leads
       for (const lead of approvedLeads) {
-        await updateLeadAIAnalysis(lead.id, {
+        await updateLead(lead.id, {
           ai_score: lead.ai_score,
           ai_recommendation: lead.ai_recommendation,
           ai_analysis: lead.ai_analysis,
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
 
       // Update database with analysis results
       for (const lead of analyzedLeads) {
-        await updateLeadAIAnalysis(lead.id, {
+        await updateLead(lead.id, {
           ai_score: lead.ai_score,
           ai_recommendation: lead.ai_recommendation,
           ai_analysis: lead.ai_analysis,
@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const allLeads = await getLeads()
+    const allLeads = await getAllLeads()
     const leadsToProcess = allLeads.filter(lead => leadIds.includes(lead.id))
 
     if (leadsToProcess.length === 0) {
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
       
       // Update database
       for (const lead of analyzedLeads) {
-        await updateLeadAIAnalysis(lead.id, {
+        await updateLead(lead.id, {
           ai_score: lead.ai_score,
           ai_recommendation: lead.ai_recommendation,
           ai_analysis: lead.ai_analysis,

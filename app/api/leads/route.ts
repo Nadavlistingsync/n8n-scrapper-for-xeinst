@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server'
-import { getLeads } from '@/lib/supabase'
+import { getAllLeads } from '@/lib/google-sheets-db'
 
 export async function GET() {
   try {
-    const leads = await getLeads()
+    const leads = await getAllLeads()
     return NextResponse.json({ success: true, leads })
   } catch (error) {
     console.error('Error fetching leads:', error)

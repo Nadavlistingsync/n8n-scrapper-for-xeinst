@@ -1,0 +1,6 @@
+id,github_username,repo_name,repo_url,repo_description,email,last_activity,created_at,email_sent,email_sent_at,status,email_approved,email_pending_approval,ai_score,ai_recommendation,ai_analysis
+"lls4456o1mebjmiua","bitovi","n8n-nodes-markitdown","https://github.com/bitovi/n8n-nodes-markitdown","","contact@bitovi.com","2025-08-06T22:39:10Z","2025-08-14T15:17:34.306Z","false","","new","false","false","","",""
+"6gyr5fti4mebjmlpj","GiK986","n8n-nodes-md-to-docs","https://github.com/GiK986/n8n-nodes-md-to-docs","""Markdown to Google Docs node for n8n – workflow automation","community node","Google Docs integration""","g.kyosev86@gmail.com","false","2025-08-14T15:17:38.023Z","false","false","false","NaN","false",""
+"i6ypyi7s2mebjmp5h","bitovi","n8n-nodes-utils","https://github.com/bitovi/n8n-nodes-utils","","contact@bitovi.com","2025-08-06T19:01:23Z","2025-08-14T15:17:42.485Z","false","","new","false","false","","",""
+"sko6ymacqmebjmpi8","bitovi","n8n-nodes-langfuse","https://github.com/bitovi/n8n-nodes-langfuse","","contact@bitovi.com","2025-08-06T18:59:00Z","2025-08-14T15:17:42.944Z","false","","new","false","false","","",""
+"p84fxhj1dmebjmpu8","bitovi","n8n-nodes-excel","https://github.com/bitovi/n8n-nodes-excel","","contact@bitovi.com","2025-08-06T18:55:44Z","2025-08-14T15:17:43.376Z","false","","new","false","false","","",""

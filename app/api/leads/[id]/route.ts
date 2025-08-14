@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { updateLeadStatus } from '@/lib/supabase'
+import { updateLead } from '@/lib/google-sheets-db'
 import { Lead } from '@/lib/types'
 
 export async function PATCH(
@@ -17,7 +17,10 @@ export async function PATCH(
       )
     }
 
-    const updatedLead = await updateLeadStatus(params.id, status as Lead['status'], emailSent)
+    const updatedLead = await updateLead(params.id, { 
+      status: status as Lead['status'],
+      ...(emailSent && { email_sent: true, email_sent_at: new Date().toISOString() })
+    })
 
     if (!updatedLead) {
       return NextResponse.json(

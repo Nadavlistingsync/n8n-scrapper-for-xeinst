@@ -1,7 +1,7 @@
 {
   "spreadsheetId": "1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
   "spreadsheetUrl": "https://docs.google.com/spreadsheets/d/1yZyDWrBKY1cniXxEz5MBtUO65H8R7TdEDtqARtsLJM0",
-  "exportDate": "2025-06-27T10:19:49.331Z",
+  "exportDate": "2025-06-27T10:55:14.758Z",
   "filesExported": 7,
   "summary": [
     [
@@ -9,49 +9,49 @@
       "EmailCampaignData",
       1000,
       "227.67 KB",
-      "2025-06-27T10:19:43.076Z"
+      "2025-06-27T10:55:07.431Z"
     ],
     [
       "emails-only-2025-06-26.txt",
       "EmailLists",
       1,
       "24.24 KB",
-      "2025-06-27T10:19:44.108Z"
+      "2025-06-27T10:55:08.726Z"
     ],
     [
       "emails-with-names-2025-06-26.txt",
       "EmailListsWithNames",
       1,
       "37.83 KB",
-      "2025-06-27T10:19:44.948Z"
+      "2025-06-27T10:55:09.772Z"
     ],
     [
       "notion-analytics-2025-06-27.json",
       "notionanalytics20250627",
       7,
       "0.19 KB",
-      "2025-06-27T10:19:45.748Z"
+      "2025-06-27T10:55:10.842Z"
     ],
     [
       "notion-email-campaign-2025-06-27.csv",
       "EmailCampaignData",
       999,
       "610.72 KB",
-      "2025-06-27T10:19:46.816Z"
+      "2025-06-27T10:55:11.831Z"
     ],
     [
       "notion-migration-2025-06-27.csv",
       "NotionMigrationData",
       1001,
       "487.76 KB",
-      "2025-06-27T10:19:48.297Z"
+      "2025-06-27T10:55:13.452Z"
     ],
     [
       "xeinst-campaign-2025-06-26.csv",
       "XeinstCampaignData",
       100,
       "127.70 KB",
-      "2025-06-27T10:19:49.331Z"
+      "2025-06-27T10:55:14.758Z"
     ]
   ]
 }
