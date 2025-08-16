@@ -1,0 +1,956 @@
+[
+  {
+    "github_username": "Nadavlistingsync",
+    "repo_name": "n8n-scrapper-for-xeinst",
+    "repo_url": "https://github.com/Nadavlistingsync/n8n-scrapper-for-xeinst",
+    "repo_description": "N8N Lead Scraper for XEINST - Automated GitHub repository scraping and lead generation system",
+    "email": "Benedeknadav@gmail.com",
+    "last_activity": "2025-08-16T09:36:35Z",
+    "status": "new"
+  },
+  {
+    "github_username": "eekfonky",
+    "repo_name": "n8n-mcp-enhanced",
+    "repo_url": "https://github.com/eekfonky/n8n-mcp-enhanced",
+    "repo_description": "Enhanced n8n MCP server with hybrid n8n-core + HTTP API architecture, community node support, and comprehensive workflow management",
+    "email": "chris.welsh23@gmail.com",
+    "last_activity": "2025-08-16T09:27:38Z",
+    "status": "new"
+  },
+  {
+    "github_username": "sht5",
+    "repo_name": "n8n-spotify-ai-playlist-generator",
+    "repo_url": "https://github.com/sht5/n8n-spotify-ai-playlist-generator",
+    "repo_description": "n8n workflows + UI to generate AI playlist generator",
+    "email": "doctor.engines@gmail.com",
+    "last_activity": "2025-08-16T08:10:50Z",
+    "status": "new"
+  },
+  {
+    "github_username": "mathursrus",
+    "repo_name": "Ashley-Calendar-AI",
+    "repo_url": "https://github.com/mathursrus/Ashley-Calendar-AI",
+    "repo_description": "An intelligent calendar assistant built with n8n that automatically manages email-based meeting requests and calendar scheduling",
+    "email": "sid.mathur@gmail.com",
+    "last_activity": "2025-08-16T07:20:37Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Odingeremia",
+    "repo_name": "n8nautentique",
+    "repo_url": "https://github.com/Odingeremia/n8nautentique",
+    "repo_description": "",
+    "email": "odingeremia@gmail.com",
+    "last_activity": "2025-08-16T04:00:39Z",
+    "status": "new"
+  },
+  {
+    "github_username": "VictorNov",
+    "repo_name": "n8n-ci-cd",
+    "repo_url": "https://github.com/VictorNov/n8n-ci-cd",
+    "repo_description": "",
+    "email": "between.photo@gmail.com",
+    "last_activity": "2025-08-16T02:35:59Z",
+    "status": "new"
+  },
+  {
+    "github_username": "joshroman",
+    "repo_name": "granola-automation-client",
+    "repo_url": "https://github.com/joshroman/granola-automation-client",
+    "repo_description": "Automatically send your Granola meetings to n8n, Airtable, Google Sheets, or any webhook",
+    "email": "joshroman@gmail.com",
+    "last_activity": "2025-08-15T16:57:43Z",
+    "status": "new"
+  },
+  {
+    "github_username": "badboysm890",
+    "repo_name": "ClaraVerse",
+    "repo_url": "https://github.com/badboysm890/ClaraVerse",
+    "repo_description": "Clara — Privacy-first, fully local AI workspace with Ollama LLM chat, tool calling, agent builder, Stable Diffusion, and embedded n8n-style automation. No backend. No API keys. Just your stack, your machine.",
+    "email": "praveensm890@gmail.com",
+    "last_activity": "2025-08-15T14:25:46Z",
+    "status": "new"
+  },
+  {
+    "github_username": "DaWe35",
+    "repo_name": "ImageRouter-n8n",
+    "repo_url": "https://github.com/DaWe35/ImageRouter-n8n",
+    "repo_description": "n8n node for ImageRouter",
+    "email": "willteam35@gmail.com",
+    "last_activity": "2025-08-15T14:13:51Z",
+    "status": "new"
+  },
+  {
+    "github_username": "jahnavi2056",
+    "repo_name": "ChatBot",
+    "repo_url": "https://github.com/jahnavi2056/ChatBot",
+    "repo_description": "A chatbot application with:  Email Sign In/Sign Up using Bolt + Nhost Auth.  Chat system using Hasura GraphQL queries, mutations, and subscriptions.  Chatbot powered by n8n connected to Hasura Actions, which in turn calls OpenRouter (free model).",
+    "email": "jahnavi2056@gmail.com",
+    "last_activity": "2025-08-15T13:12:41Z",
+    "status": "new"
+  },
+  {
+    "github_username": "popatkaran",
+    "repo_name": "n8n-nodes-spryker",
+    "repo_url": "https://github.com/popatkaran/n8n-nodes-spryker",
+    "repo_description": "",
+    "email": "krn.ppt@gmail.com",
+    "last_activity": "2025-08-15T12:26:24Z",
+    "status": "new"
+  },
+  {
+    "github_username": "lvdaqian",
+    "repo_name": "n8n-nodes-volcengine-tos",
+    "repo_url": "https://github.com/lvdaqian/n8n-nodes-volcengine-tos",
+    "repo_description": "a n8n node for volceengine tos service",
+    "email": "lvdaqian@gmail.com",
+    "last_activity": "2025-08-15T08:30:55Z",
+    "status": "new"
+  },
+  {
+    "github_username": "matr1xp",
+    "repo_name": "ubereats_mcp_server",
+    "repo_url": "https://github.com/matr1xp/ubereats_mcp_server",
+    "repo_description": "This is an enhanced UberEats MCP (Model Context Protocol) server built with TypeScript. It provides automated interaction with UberEats through a modern MCP server implementation that integrates with n8n workflows for browser automation. The system enables AI clients to order food programmatically via standardized MCP protocol.",
+    "email": "marlonsantos.au@gmail.com",
+    "last_activity": "2025-08-14T22:57:15Z",
+    "status": "new"
+  },
+  {
+    "github_username": "nukleas",
+    "repo_name": "n8n-nodes-streak-crm",
+    "repo_url": "https://github.com/nukleas/n8n-nodes-streak-crm",
+    "repo_description": "N8n nodes for Streak CRM",
+    "email": "nader.c.heidari@gmail.com",
+    "last_activity": "2025-08-14T22:33:49Z",
+    "status": "new"
+  },
+  {
+    "github_username": "DirectorVector",
+    "repo_name": "n8n-nodes-kraken",
+    "repo_url": "https://github.com/DirectorVector/n8n-nodes-kraken",
+    "repo_description": "Kraken API in n8n",
+    "email": "bricethrower@gmail.com",
+    "last_activity": "2025-08-14T19:40:16Z",
+    "status": "new"
+  },
+  {
+    "github_username": "dioveath",
+    "repo_name": "n8n-nodes-starter",
+    "repo_url": "https://github.com/dioveath/n8n-nodes-starter",
+    "repo_description": "Quick start setup for n8n community nodes with easy development flow with Docker compose setup.",
+    "email": "raisaroj360@gmail.com",
+    "last_activity": "2025-08-14T18:14:43Z",
+    "status": "new"
+  },
+  {
+    "github_username": "dioveath",
+    "repo_name": "n8n-nodes-gemini",
+    "repo_url": "https://github.com/dioveath/n8n-nodes-gemini",
+    "repo_description": "n8n nodes for integrating Google Gemini AI with enhanced multi-API key support and empty response fix stability through retries.",
+    "email": "raisaroj360@gmail.com",
+    "last_activity": "2025-08-14T18:06:57Z",
+    "status": "new"
+  },
+  {
+    "github_username": "anoopkarnik",
+    "repo_name": "n8n-workflows-organizer",
+    "repo_url": "https://github.com/anoopkarnik/n8n-workflows-organizer",
+    "repo_description": "",
+    "email": "danoopkarnik@gmail.com",
+    "last_activity": "2025-08-14T12:48:11Z",
+    "status": "new"
+  },
+  {
+    "github_username": "coldwoong-moon",
+    "repo_name": "n8n-setup",
+    "repo_url": "https://github.com/coldwoong-moon/n8n-setup",
+    "repo_description": "Complete N8N automation setup with Docker, SSL, PostgreSQL, and Redis integration",
+    "email": "developer.woong@gmail.com",
+    "last_activity": "2025-08-14T08:58:44Z",
+    "status": "new"
+  },
+  {
+    "github_username": "manthan-jsharma",
+    "repo_name": "NHost-GraphQl-Hasura-n8n-Chatbot",
+    "repo_url": "https://github.com/manthan-jsharma/NHost-GraphQl-Hasura-n8n-Chatbot",
+    "repo_description": "",
+    "email": "manthan.jsharma@gmail.com",
+    "last_activity": "2025-08-14T07:46:33Z",
+    "status": "new"
+  },
+  {
+    "github_username": "n8n-brasil",
+    "repo_name": "n8n-Doc-PT-BR",
+    "repo_url": "https://github.com/n8n-brasil/n8n-Doc-PT-BR",
+    "repo_description": "Documentação completa do n8n em português brasileiro - Hub de conhecimento para a comunidade brasileira de automação ",
+    "email": "n8ndocptbr@gmail.com",
+    "last_activity": "2025-08-14T02:04:16Z",
+    "status": "new"
+  },
+  {
+    "github_username": "kamblekiran",
+    "repo_name": "n8n-3-My-Agentic-AI-DevOps-CICD-only",
+    "repo_url": "https://github.com/kamblekiran/n8n-3-My-Agentic-AI-DevOps-CICD-only",
+    "repo_description": "",
+    "email": "kamblekiran786@gmail.com",
+    "last_activity": "2025-08-14T01:07:07Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Erick-GG",
+    "repo_name": "Sistema-integrado-de-gestion-de-tareas-y-notificaciones",
+    "repo_url": "https://github.com/Erick-GG/Sistema-integrado-de-gestion-de-tareas-y-notificaciones",
+    "repo_description": "Flujo de trabajo RPA en N8N que automatiza la asignación de tareas integrando Formularios de Google, Hojas de cálculo de Google, Google App Script, Asana, Slack, WhatsApp Business y SMTP.",
+    "email": "erickgg.se@gmail.com",
+    "last_activity": "2025-08-13T20:11:34Z",
+    "status": "new"
+  },
+  {
+    "github_username": "lakshay-tiwari",
+    "repo_name": "chatBot-n8n",
+    "repo_url": "https://github.com/lakshay-tiwari/chatBot-n8n",
+    "repo_description": "This is used to learn nhost , graphql , hasura and n8n ai agents",
+    "email": "imlakshya.tiwari@gmail.com",
+    "last_activity": "2025-08-13T20:05:06Z",
+    "status": "new"
+  },
+  {
+    "github_username": "aryanrai97861",
+    "repo_name": "n8n-hashura-chatbot",
+    "repo_url": "https://github.com/aryanrai97861/n8n-hashura-chatbot",
+    "repo_description": "",
+    "email": "aryanrai97861@gmail.com",
+    "last_activity": "2025-08-13T18:34:19Z",
+    "status": "new"
+  },
+  {
+    "github_username": "stupidguy176",
+    "repo_name": "n8n-nodes-zalo-toolkit",
+    "repo_url": "https://github.com/stupidguy176/n8n-nodes-zalo-toolkit",
+    "repo_description": "",
+    "email": "hoaian176@gmail.com",
+    "last_activity": "2025-08-13T14:32:54Z",
+    "status": "new"
+  },
+  {
+    "github_username": "DirectorVector",
+    "repo_name": "n8n-nodes-trends",
+    "repo_url": "https://github.com/DirectorVector/n8n-nodes-trends",
+    "repo_description": "Community n8n node to get Google Trends data",
+    "email": "bricethrower@gmail.com",
+    "last_activity": "2025-08-13T10:19:06Z",
+    "status": "new"
+  },
+  {
+    "github_username": "robiokidenis",
+    "repo_name": "n8n-nodes-whatsapp-multi-session",
+    "repo_url": "https://github.com/robiokidenis/n8n-nodes-whatsapp-multi-session",
+    "repo_description": "",
+    "email": "robiokidenis@gmail.com",
+    "last_activity": "2025-08-13T07:47:06Z",
+    "status": "new"
+  },
+  {
+    "github_username": "2noScript",
+    "repo_name": "n8n-node-video-mzz",
+    "repo_url": "https://github.com/2noScript/n8n-node-video-mzz",
+    "repo_description": "",
+    "email": "dev.2noscript@gmail.com",
+    "last_activity": "2025-08-13T06:45:38Z",
+    "status": "new"
+  },
+  {
+    "github_username": "dssiqueira",
+    "repo_name": "n8n-nodes-cnpj-hub",
+    "repo_url": "https://github.com/dssiqueira/n8n-nodes-cnpj-hub",
+    "repo_description": "",
+    "email": "douglas.siqueira.silva@gmail.com",
+    "last_activity": "2025-08-13T04:01:52Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ChandanKT-git",
+    "repo_name": "n8n-chatbot",
+    "repo_url": "https://github.com/ChandanKT-git/n8n-chatbot",
+    "repo_description": "",
+    "email": "cktofficial24@gmail.com",
+    "last_activity": "2025-08-12T19:31:31Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Krunal-375",
+    "repo_name": "subspace-chatbot-assignment",
+    "repo_url": "https://github.com/Krunal-375/subspace-chatbot-assignment",
+    "repo_description": "Full-stack chatbot application with React, Nhost Auth, Hasura GraphQL, n8n workflows, and OpenRouter AI integration",
+    "email": "krunaldhapodkar24@gmail.com",
+    "last_activity": "2025-08-12T17:32:30Z",
+    "status": "new"
+  },
+  {
+    "github_username": "nicolasdelrosario",
+    "repo_name": "whatsapp-n8n-server",
+    "repo_url": "https://github.com/nicolasdelrosario/whatsapp-n8n-server",
+    "repo_description": "🚀 REST API server for WhatsApp automation via whatsapp-web.js, made to integrate with n8n workflows.",
+    "email": "delrosariolozanonicolas@gmail.com",
+    "last_activity": "2025-08-12T17:14:53Z",
+    "status": "new"
+  },
+  {
+    "github_username": "sincodigoagency-tech",
+    "repo_name": "n8n",
+    "repo_url": "https://github.com/sincodigoagency-tech/n8n",
+    "repo_description": "",
+    "email": "sincodigoagency@gmail.com",
+    "last_activity": "2025-08-12T13:21:09Z",
+    "status": "new"
+  },
+  {
+    "github_username": "t0mer",
+    "repo_name": "greenapi-n8n-router",
+    "repo_url": "https://github.com/t0mer/greenapi-n8n-router",
+    "repo_description": "A lightweight Python-based relay that connects Green-API WhatsApp messages to dynamic n8n webhook URLs based on chat IDs.",
+    "email": "tomer.klein@gmail.com",
+    "last_activity": "2025-08-12T12:38:45Z",
+    "status": "new"
+  },
+  {
+    "github_username": "apaleo",
+    "repo_name": "n8n-nodes-apaleo",
+    "repo_url": "https://github.com/apaleo/n8n-nodes-apaleo",
+    "repo_description": "Apaleo nodes for N8N community",
+    "email": "stephan.wiesener@gmail.com",
+    "last_activity": "2025-08-12T12:44:31Z",
+    "status": "new"
+  },
+  {
+    "github_username": "mtane0412",
+    "repo_name": "n8n-nodes-cosense",
+    "repo_url": "https://github.com/mtane0412/n8n-nodes-cosense",
+    "repo_description": "n8n node for Cosense",
+    "email": "mtane0412@gmail.com",
+    "last_activity": "2025-08-12T06:11:58Z",
+    "status": "new"
+  },
+  {
+    "github_username": "kamblekiran",
+    "repo_name": "n8n-2-My-Agentic-AI-DevOps-Platform",
+    "repo_url": "https://github.com/kamblekiran/n8n-2-My-Agentic-AI-DevOps-Platform",
+    "repo_description": "",
+    "email": "kamblekiran786@gmail.com",
+    "last_activity": "2025-08-12T05:59:16Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Saro50",
+    "repo_name": "my-n8n-node",
+    "repo_url": "https://github.com/Saro50/my-n8n-node",
+    "repo_description": "",
+    "email": "tharbad50@gmail.com",
+    "last_activity": "2025-08-12T02:50:38Z",
+    "status": "new"
+  },
+  {
+    "github_username": "kamblekiran",
+    "repo_name": "n8n-3-My-Agentic-AI-DevOps-Platform",
+    "repo_url": "https://github.com/kamblekiran/n8n-3-My-Agentic-AI-DevOps-Platform",
+    "repo_description": "",
+    "email": "kamblekiran786@gmail.com",
+    "last_activity": "2025-08-11T17:41:55Z",
+    "status": "new"
+  },
+  {
+    "github_username": "VINCE-94482",
+    "repo_name": "n8n-NS",
+    "repo_url": "https://github.com/VINCE-94482/n8n-NS",
+    "repo_description": "",
+    "email": "jvlim23521@gmail.com",
+    "last_activity": "2025-08-11T03:18:31Z",
+    "status": "new"
+  },
+  {
+    "github_username": "lhq220",
+    "repo_name": "n8n-editor-ui",
+    "repo_url": "https://github.com/lhq220/n8n-editor-ui",
+    "repo_description": "",
+    "email": "hg.quan23@gmail.com",
+    "last_activity": "2025-08-11T02:49:51Z",
+    "status": "new"
+  },
+  {
+    "github_username": "logendranthangaraj",
+    "repo_name": "n8n_AI_Agents",
+    "repo_url": "https://github.com/logendranthangaraj/n8n_AI_Agents",
+    "repo_description": "",
+    "email": "logendranthangaraj18@gmail.com",
+    "last_activity": "2025-08-11T01:42:42Z",
+    "status": "new"
+  },
+  {
+    "github_username": "dioveath",
+    "repo_name": "n8n-nodes-transcribe-audio",
+    "repo_url": "https://github.com/dioveath/n8n-nodes-transcribe-audio",
+    "repo_description": "Custom n8n node that performs speech-to-text on audio files within your n8n workflows. This node provides local audio transcription, no internet or third-party APIs required for processing.",
+    "email": "raisaroj360@gmail.com",
+    "last_activity": "2025-08-11T00:31:01Z",
+    "status": "new"
+  },
+  {
+    "github_username": "dioveath",
+    "repo_name": "n8n-nodes-ffmpeg",
+    "repo_url": "https://github.com/dioveath/n8n-nodes-ffmpeg",
+    "repo_description": "FFmpeg node for n8n. This node provides a simple interface to use FFmpeg commands directly within n8n workflows.",
+    "email": "raisaroj360@gmail.com",
+    "last_activity": "2025-08-10T21:29:13Z",
+    "status": "new"
+  },
+  {
+    "github_username": "HridoyVaraby",
+    "repo_name": "n8n-workflows",
+    "repo_url": "https://github.com/HridoyVaraby/n8n-workflows",
+    "repo_description": "",
+    "email": "sbi.ridoy@gmail.com",
+    "last_activity": "2025-08-10T21:25:00Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ItsNicko",
+    "repo_name": "FetchClassroomData",
+    "repo_url": "https://github.com/ItsNicko/FetchClassroomData",
+    "repo_description": "Procrastination makes starting assignments hard, so I built a pipeline using Apps Script, Sheets, and n8n to push Google Classroom tasks into Microsoft To Do. This bypasses school’s/Google's API blocks and helps me get dopamine hits by managing tasks where I’m more motivated.",
+    "email": "nickolasfranco618@gmail.com",
+    "last_activity": "2025-08-10T15:14:42Z",
+    "status": "new"
+  },
+  {
+    "github_username": "xuanzai92",
+    "repo_name": "n8n_manage",
+    "repo_url": "https://github.com/xuanzai92/n8n_manage",
+    "repo_description": "",
+    "email": "liuhuaxuan92@gmail.com",
+    "last_activity": "2025-08-10T14:06:19Z",
+    "status": "new"
+  },
+  {
+    "github_username": "0xGajendra",
+    "repo_name": "n8n-email-classifier",
+    "repo_url": "https://github.com/0xGajendra/n8n-email-classifier",
+    "repo_description": "",
+    "email": "gajendrapawar69@gmail.com",
+    "last_activity": "2025-08-10T13:36:07Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ChangChiao",
+    "repo_name": "n8n-practice",
+    "repo_url": "https://github.com/ChangChiao/n8n-practice",
+    "repo_description": "",
+    "email": "joe.chang365@gmail.com",
+    "last_activity": "2025-08-10T13:05:59Z",
+    "status": "new"
+  },
+  {
+    "github_username": "danishaft",
+    "repo_name": "Neon-db-node",
+    "repo_url": "https://github.com/danishaft/Neon-db-node",
+    "repo_description": "An n8n community node for all things neon-db",
+    "email": "danielejeh2019@gmail.com",
+    "last_activity": "2025-08-10T08:09:13Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Saipavankh",
+    "repo_name": "whatsapp-gmail-n8n",
+    "repo_url": "https://github.com/Saipavankh/whatsapp-gmail-n8n",
+    "repo_description": "Venom bot for render",
+    "email": "saipavankh07@gmail.com",
+    "last_activity": "2025-08-10T06:24:18Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ViniAdss",
+    "repo_name": "chatwoot-n8n-followup-automation",
+    "repo_url": "https://github.com/ViniAdss/chatwoot-n8n-followup-automation",
+    "repo_description": "Um projeto de automação integrando n8n ao Chatwoot, com mensagens geradas por IA.",
+    "email": "adsvinisousa@gmail.com",
+    "last_activity": "2025-08-10T03:35:53Z",
+    "status": "new"
+  },
+  {
+    "github_username": "nilskj",
+    "repo_name": "n8n-notebook-lab",
+    "repo_url": "https://github.com/nilskj/n8n-notebook-lab",
+    "repo_description": "",
+    "email": "nilskjellman@gmail.com",
+    "last_activity": "2025-08-09T19:14:11Z",
+    "status": "new"
+  },
+  {
+    "github_username": "djuang1",
+    "repo_name": "n8n-nodes-gleanclient",
+    "repo_url": "https://github.com/djuang1/n8n-nodes-gleanclient",
+    "repo_description": "",
+    "email": "dejimj@gmail.com",
+    "last_activity": "2025-08-09T19:00:14Z",
+    "status": "new"
+  },
+  {
+    "github_username": "shdnaicode",
+    "repo_name": "n8n-project",
+    "repo_url": "https://github.com/shdnaicode/n8n-project",
+    "repo_description": "Discord chatbot integrated with n8n automation workflow, built with Javascript.",
+    "email": "smartsoodprasert69@gmail.com",
+    "last_activity": "2025-08-09T14:38:30Z",
+    "status": "new"
+  },
+  {
+    "github_username": "lauchacarro",
+    "repo_name": "n8n-nodes-memory-state",
+    "repo_url": "https://github.com/lauchacarro/n8n-nodes-memory-state",
+    "repo_description": "",
+    "email": "lautaroecarro@gmail.com",
+    "last_activity": "2025-08-09T04:10:08Z",
+    "status": "new"
+  },
+  {
+    "github_username": "gabrondev",
+    "repo_name": "portfolio",
+    "repo_url": "https://github.com/gabrondev/portfolio",
+    "repo_description": "Portfólio fullstack com IA para exibição de projetos, skills e artigos.",
+    "email": "gabrieltux19@gmail.com",
+    "last_activity": "2025-08-09T19:50:49Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Elimeleth",
+    "repo_name": "sheet-manager",
+    "repo_url": "https://github.com/Elimeleth/sheet-manager",
+    "repo_description": "n8n custom node",
+    "email": "elimelethcapuano@gmail.com",
+    "last_activity": "2025-08-08T17:24:22Z",
+    "status": "new"
+  },
+  {
+    "github_username": "patrickjaja",
+    "repo_name": "workoflow-bot",
+    "repo_url": "https://github.com/patrickjaja/workoflow-bot",
+    "repo_description": "simple teams bot redirecting messages to n8n (https://github.com/patrickjaja/workoflow-hosting)",
+    "email": "patrickjajaa@gmail.com",
+    "last_activity": "2025-08-08T10:02:40Z",
+    "status": "new"
+  },
+  {
+    "github_username": "AD-Archer",
+    "repo_name": "archersuite-n8n-job-dashboard",
+    "repo_url": "https://github.com/AD-Archer/archersuite-n8n-job-dashboard",
+    "repo_description": "This is a selfhostable app to be used with an n8n workflow to search for jobs and keep track of which jobs you applied to",
+    "email": "antonioarcher.dev@gmail.com",
+    "last_activity": "2025-08-08T02:40:59Z",
+    "status": "new"
+  },
+  {
+    "github_username": "FirePheonix",
+    "repo_name": "instagram_competitors_n8n",
+    "repo_url": "https://github.com/FirePheonix/instagram_competitors_n8n",
+    "repo_description": "",
+    "email": "shubhsoch@gmail.com",
+    "last_activity": "2025-08-07T15:52:04Z",
+    "status": "new"
+  },
+  {
+    "github_username": "kamblekiran",
+    "repo_name": "n8n-My-Agentic-AI-DevOps-Platform-",
+    "repo_url": "https://github.com/kamblekiran/n8n-My-Agentic-AI-DevOps-Platform-",
+    "repo_description": "",
+    "email": "kamblekiran786@gmail.com",
+    "last_activity": "2025-08-07T13:05:45Z",
+    "status": "new"
+  },
+  {
+    "github_username": "fabriciopf",
+    "repo_name": "n8n-webchat-metatrader",
+    "repo_url": "https://github.com/fabriciopf/n8n-webchat-metatrader",
+    "repo_description": "",
+    "email": "fabriciopf@gmail.com",
+    "last_activity": "2025-08-07T02:36:15Z",
+    "status": "new"
+  },
+  {
+    "github_username": "GiK986",
+    "repo_name": "n8n-nodes-md-to-docs",
+    "repo_url": "https://github.com/GiK986/n8n-nodes-md-to-docs",
+    "repo_description": "Markdown to Google Docs node for n8n – workflow automation, community node, Google Docs integration",
+    "email": "g.kyosev86@gmail.com",
+    "last_activity": "2025-08-06T22:20:05Z",
+    "status": "new"
+  },
+  {
+    "github_username": "UsmanGhias",
+    "repo_name": "odoo-n8n",
+    "repo_url": "https://github.com/UsmanGhias/odoo-n8n",
+    "repo_description": "odoo n8n integration",
+    "email": "usmanghias1@gmail.com",
+    "last_activity": "2025-08-06T18:16:26Z",
+    "status": "new"
+  },
+  {
+    "github_username": "aqsafatima",
+    "repo_name": "workflow-n8n",
+    "repo_url": "https://github.com/aqsafatima/workflow-n8n",
+    "repo_description": "",
+    "email": "aqsafatima1501@gmail.com",
+    "last_activity": "2025-08-06T16:46:29Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Promit-revar",
+    "repo_name": "N8n_node",
+    "repo_url": "https://github.com/Promit-revar/N8n_node",
+    "repo_description": "",
+    "email": "promit.revar2211@gmail.com",
+    "last_activity": "2025-08-06T12:03:15Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ArtificialMonks",
+    "repo_name": "controlhub",
+    "repo_url": "https://github.com/ArtificialMonks/controlhub",
+    "repo_description": "control all your n8n automations from a single dashboard ",
+    "email": "artificialmonks@gmail.com",
+    "last_activity": "2025-08-16T05:56:24Z",
+    "status": "new"
+  },
+  {
+    "github_username": "fabriciopf",
+    "repo_name": "n8n-webchat-diabetes",
+    "repo_url": "https://github.com/fabriciopf/n8n-webchat-diabetes",
+    "repo_description": "",
+    "email": "fabriciopf@gmail.com",
+    "last_activity": "2025-08-05T22:53:43Z",
+    "status": "new"
+  },
+  {
+    "github_username": "shayan-qazmi",
+    "repo_name": "Resume-Tailor",
+    "repo_url": "https://github.com/shayan-qazmi/Resume-Tailor",
+    "repo_description": "🚀 AI-powered Resume Tailor – Upload your resume & job description to get a job-optimized version instantly using OpenAI & n8n automation. Built with Next.js, Node.js, Supabase, and MongoDB.",
+    "email": "shayanhaiderqazmi@gmail.com",
+    "last_activity": "2025-08-05T18:58:19Z",
+    "status": "new"
+  },
+  {
+    "github_username": "tiago123456789",
+    "repo_name": "mini-n8n",
+    "repo_url": "https://github.com/tiago123456789/mini-n8n",
+    "repo_description": "",
+    "email": "tiagorosadacost@gmail.com",
+    "last_activity": "2025-08-05T18:29:31Z",
+    "status": "new"
+  },
+  {
+    "github_username": "sobhan-sai",
+    "repo_name": "n8n-poc",
+    "repo_url": "https://github.com/sobhan-sai/n8n-poc",
+    "repo_description": "",
+    "email": "sobhansai45@gmail.com",
+    "last_activity": "2025-08-05T18:04:19Z",
+    "status": "new"
+  },
+  {
+    "github_username": "trinitispb-debug",
+    "repo_name": "n8n-io",
+    "repo_url": "https://github.com/trinitispb-debug/n8n-io",
+    "repo_description": "",
+    "email": "triniti.spb@gmail.com",
+    "last_activity": "2025-08-06T11:35:17Z",
+    "status": "new"
+  },
+  {
+    "github_username": "jacksierkstra",
+    "repo_name": "n8n-nodes-edifact-to-json",
+    "repo_url": "https://github.com/jacksierkstra/n8n-nodes-edifact-to-json",
+    "repo_description": "A custom node that converts from and to edifact/json.",
+    "email": "jacksierkstra@gmail.com",
+    "last_activity": "2025-08-05T06:34:29Z",
+    "status": "new"
+  },
+  {
+    "github_username": "salimalsazu",
+    "repo_name": "n8n-deploy",
+    "repo_url": "https://github.com/salimalsazu/n8n-deploy",
+    "repo_description": "",
+    "email": "sazusalim@gmail.com",
+    "last_activity": "2025-08-04T12:23:53Z",
+    "status": "new"
+  },
+  {
+    "github_username": "nmthangdn2000",
+    "repo_name": "n8n-nodes-web-automation-tools",
+    "repo_url": "https://github.com/nmthangdn2000/n8n-nodes-web-automation-tools",
+    "repo_description": "",
+    "email": "uptimumdn2000@gmail.com",
+    "last_activity": "2025-08-04T10:53:39Z",
+    "status": "new"
+  },
+  {
+    "github_username": "takezou621",
+    "repo_name": "n8n-tweet",
+    "repo_url": "https://github.com/takezou621/n8n-tweet",
+    "repo_description": "",
+    "email": "takezou621@gmail.com",
+    "last_activity": "2025-08-04T08:11:47Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Neidn",
+    "repo_name": "n8n-nodes-friendgrid",
+    "repo_url": "https://github.com/Neidn/n8n-nodes-friendgrid",
+    "repo_description": "",
+    "email": "dty3152@gmail.com",
+    "last_activity": "2025-08-04T03:36:03Z",
+    "status": "new"
+  },
+  {
+    "github_username": "Mr-Ashish",
+    "repo_name": "n8n-monitor",
+    "repo_url": "https://github.com/Mr-Ashish/n8n-monitor",
+    "repo_description": "",
+    "email": "ash8032@gmail.com",
+    "last_activity": "2025-08-03T21:55:11Z",
+    "status": "new"
+  },
+  {
+    "github_username": "ecrespo",
+    "repo_name": "n8n_workflows",
+    "repo_url": "https://github.com/ecrespo/n8n_workflows",
+    "repo_description": "N8N Workflows projects",
+    "email": "ecrespo@gmail.com",
+    "last_activity": "2025-08-03T17:31:10Z",
+    "status": "new"
+  },
+  {
+    "github_username": "benzondataen",
+    "repo_name": "nextjs-english-story-quiz",
+    "repo_url": "https://github.com/benzondataen/nextjs-english-story-quiz",
+    "repo_description": "next.js with n8n webhook",
+    "email": "benzondataen@gmail.com",
+    "last_activity": "2025-08-03T15:25:35Z",
+    "status": "new"
+  },
+  {
+    "github_username": "fahadnasir13",
+    "repo_name": "AI-Mental-Health-Tracker",
+    "repo_url": "https://github.com/fahadnasir13/AI-Mental-Health-Tracker",
+    "repo_description": "A beautiful, AI-powered mental health tracking application built with React, TypeScript, and Tailwind CSS.",
+    "email": "fahadnasir1311@gmail.com",
+    "last_activity": "2025-08-03T10:12:50Z",
+    "status": "new"
+  },
+  {
+    "github_username": "andrewkuan",
+    "repo_name": "flowforge-ai",
+    "repo_url": "https://github.com/andrewkuan/flowforge-ai",
+    "repo_description": "A minimalist web chat assistant that converts automation ideas into n8n workflows",
+    "email": "andrewkuan10@gmail.com",
+    "last_activity": "2025-08-02T20:46:20Z",
+    "status": "new"
+  },
+  {
+    "github_username": "SH20RAJ",
+    "repo_name": "wrkflow",
+    "repo_url": "https://github.com/SH20RAJ/wrkflow",
+    "repo_description": "A modern, full-featured marketplace for sharing and discovering N8N workflows. Built with Next.js 15, TypeScript, and deployed on Cloudflare.",
+    "email": "shaswatraj3@gmail.com",
+    "last_activity": "2025-08-02T18:24:56Z",
+    "status": "new"
+  },
+  {
+    "github_username": "PintaAI",
+    "repo_name": "n8n",
+    "repo_url": "https://github.com/PintaAI/n8n",
+    "repo_description": "",
+    "email": "pintabot.member@gmail.com",
+    "last_activity": "2025-08-02T02:43:18Z",
+    "status": "new"
+  },
+  {
+    "github_username": "lehno",
+    "repo_name": "n8n-nodes-mongo-oid",
+    "repo_url": "https://github.com/lehno/n8n-nodes-mongo-oid",
+    "repo_description": "",
+    "email": "leh.hoff@gmail.com",
+    "last_activity": "2025-08-01T22:02:11Z",
+    "status": "new"
+  },
+  {
+    "github_username": "sabbirsami",
+    "repo_name": "sheet-lookup-bot-n8n",
+    "repo_url": "https://github.com/sabbirsami/sheet-lookup-bot-n8n",
+    "repo_description": "",
+    "email": "sabbir.mohammad.sami@gmail.com",
+    "last_activity": "2025-08-01T17:59:47Z",
+    "status": "new"
+  },
+  {
+    "github_username": "bismah-nasir",
+    "repo_name": "Nexium_Bismah_AI_Recipe_Generator",
+    "repo_url": "https://github.com/bismah-nasir/Nexium_Bismah_AI_Recipe_Generator",
+    "repo_description": "AI-powered recipe generator using Supabase, MongoDB, Vercel, and n8n",
+    "email": "bismahnasir000@gmail.com",
+    "last_activity": "2025-08-01T14:21:56Z",
+    "status": "new"
+  },
+  {
+    "github_username": "sabbirsami",
+    "repo_name": "samalyze",
+    "repo_url": "https://github.com/sabbirsami/samalyze",
+    "repo_description": "An intelligent support ticket system powered by AI that automatically analyzes, categorizes, and responds to customer inquiries using Google's Gemini API and n8n automation workflows.",
+    "email": "sabbir.mohammad.sami@gmail.com",
+    "last_activity": "2025-08-01T12:04:16Z",
+    "status": "new"
+  },
+  {
+    "github_username": "MFiech",
+    "repo_name": "n8n-docker",
+    "repo_url": "https://github.com/MFiech/n8n-docker",
+    "repo_description": "",
+    "email": "michal.fiech@gmail.com",
+    "last_activity": "2025-08-01T08:00:46Z",
+    "status": "new"
+  },
+  {
+    "github_username": "padhu-lp",
+    "repo_name": "elevenlabs-forwarder",
+    "repo_url": "https://github.com/padhu-lp/elevenlabs-forwarder",
+    "repo_description": "Code to connect ElevenLabs to a webhook to forward to n8n",
+    "email": "padhu.lp@gmail.com",
+    "last_activity": "2025-08-01T06:44:22Z",
+    "status": "new"
+  },
+  {
+    "github_username": "FatimaRana50",
+    "repo_name": "Nexium_Fatima_Recipe_Generator",
+    "repo_url": "https://github.com/FatimaRana50/Nexium_Fatima_Recipe_Generator",
+    "repo_description": "n8n workflow: Convert ingredients to recipes using AI",
+    "email": "fatimafarrukhrana123@gmail.com",
+    "last_activity": "2025-07-31T20:10:22Z",
+    "status": "new"
+  },
+  {
+    "github_username": "bm48",
+    "repo_name": "n8n-nodes-telegram-polling",
+    "repo_url": "https://github.com/bm48/n8n-nodes-telegram-polling",
+    "repo_description": "",
+    "email": "muldersbert48@gmail.com",
+    "last_activity": "2025-07-31T18:37:53Z",
+    "status": "new"
+  },
+  {
+    "github_username": "PavelSozonov",
+    "repo_name": "n8n-community-sso",
+    "repo_url": "https://github.com/PavelSozonov/n8n-community-sso",
+    "repo_description": "",
+    "email": "pavel.sozonov@gmail.com",
+    "last_activity": "2025-07-31T17:55:51Z",
+    "status": "new"
+  },
+  {
+    "github_username": "srinjoybiswas",
+    "repo_name": "WhatsApp-Driven-Google-Drive-Assistant-",
+    "repo_url": "https://github.com/srinjoybiswas/WhatsApp-Driven-Google-Drive-Assistant-",
+    "repo_description": "This project enables users to control their Google Drive directly through WhatsApp messages using Twilio and n8n. By sending commands like LIST, DELETE, MOVE, or SUMMARY, users can list files, manage folders, and even receive AI-generated summaries of documents via WhatsApp. It integrates Google Drive, OpenAI (for summarization),",
+    "email": "srinjoyb2004@gmail.com",
+    "last_activity": "2025-07-31T16:51:38Z",
+    "status": "new"
+  },
+  {
+    "github_username": "jonghwa-yim",
+    "repo_name": "L3_n8n_TravelPlan",
+    "repo_url": "https://github.com/jonghwa-yim/L3_n8n_TravelPlan",
+    "repo_description": "",
+    "email": "jonhwayim@gmail.com",
+    "last_activity": "2025-07-31T11:30:35Z",
+    "status": "new"
+  },
+  {
+    "github_username": "qwedsazxc78",
+    "repo_name": "n8n-ai-agent-widget-lab",
+    "repo_url": "https://github.com/qwedsazxc78/n8n-ai-agent-widget-lab",
+    "repo_description": "",
+    "email": "qwedsazxc78@gmail.com",
+    "last_activity": "2025-07-31T10:00:05Z",
+    "status": "new"
+  },
+  {
+    "github_username": "hxcCoder",
+    "repo_name": "crm-dashboard-n8n",
+    "repo_url": "https://github.com/hxcCoder/crm-dashboard-n8n",
+    "repo_description": "Este proyecto es un CRM básico que permite registrar usuarios mediante un formulario web y visualizar los datos en un dashboard dinámico conectado a Google Sheets usando n8n.",
+    "email": "benjaminmillalonc@gmail.com",
+    "last_activity": "2025-07-31T08:13:07Z",
+    "status": "new"
+  },
+  {
+    "github_username": "EmadRafique",
+    "repo_name": "pitch_writer_project-nexium",
+    "repo_url": "https://github.com/EmadRafique/pitch_writer_project-nexium",
+    "repo_description": " AI-powered Pitch Generator web app using Supabase, MongoDB, n8n, and Next.js. Generates startup pitches in seconds.",
+    "email": "rafiqueemad@gmail.com",
+    "last_activity": "2025-07-30T08:26:53Z",
+    "status": "new"
+  },
+  {
+    "github_username": "efengx",
+    "repo_name": "n8n-nodes-mcp-fxai",
+    "repo_url": "https://github.com/efengx/n8n-nodes-mcp-fxai",
+    "repo_description": "mcp replica n8n component",
+    "email": "ofengx@gmail.com",
+    "last_activity": "2025-07-30T08:24:48Z",
+    "status": "new"
+  },
+  {
+    "github_username": "A-wisnu",
+    "repo_name": "N8n",
+    "repo_url": "https://github.com/A-wisnu/N8n",
+    "repo_description": "",
+    "email": "ikanberenang50@gmail.com",
+    "last_activity": "2025-07-30T18:44:20Z",
+    "status": "new"
+  },
+  {
+    "github_username": "jhuan-montoya",
+    "repo_name": "clickup-mcp-server-n8n",
+    "repo_url": "https://github.com/jhuan-montoya/clickup-mcp-server-n8n",
+    "repo_description": "ClickUp MCP Server - Integrate ClickUp project management with AI through Model Context Protocol",
+    "email": "jhuanpablo1234@gmail.com",
+    "last_activity": "2025-07-30T03:39:10Z",
+    "status": "new"
+  },
+  {
+    "github_username": "cimbraien",
+    "repo_name": "n8n-nodes-talenta",
+    "repo_url": "https://github.com/cimbraien/n8n-nodes-talenta",
+    "repo_description": "Unofficial n8n integration for the Talenta Mekari API — enabling workflow automation with Talenta’s HRIS platform.",
+    "email": "cimbraien@gmail.com",
+    "last_activity": "2025-07-29T14:58:48Z",
+    "status": "new"
+  },
+  {
+    "github_username": "davidlefrancq",
+    "repo_name": "n8n",
+    "repo_url": "https://github.com/davidlefrancq/n8n",
+    "repo_description": "",
+    "email": "david.lefrancq@gmail.com",
+    "last_activity": "2025-08-06T17:37:46Z",
+    "status": "new"
+  },
+  {
+    "github_username": "khoazero123",
+    "repo_name": "n8n-nodes-telegram-user",
+    "repo_url": "https://github.com/khoazero123/n8n-nodes-telegram-user",
+    "repo_description": "",
+    "email": "khoazero123@gmail.com",
+    "last_activity": "2025-07-29T08:02:31Z",
+    "status": "new"
+  }
+]
